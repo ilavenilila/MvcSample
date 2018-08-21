@@ -1,0 +1,78 @@
+﻿@using MvcDB.Models;
+@{
+    ViewBag.Title = "Student List";
+}
+@model Student
+<h2>Student</h2>
+
+<a class="btn btn-default" style="margin-bottom:10px"onclick="popupfrom('@Url.Action("AddOrEdit","Employee")')"<i class="fa fa-plus" ></i>Add New</a>
+<table id=" StudentTable" class="table table table-striped table-bordered">
+    <thead>
+        <tr>
+
+
+            <th>ID<br></th> 
+             
+            <th>Name<br></th>
+
+            <th>Dept<br></th>
+
+            <th>City</th>
+        </tr>
+    </thead>
+</table>
+
+
+
+<link href="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js " rel=" stylesheet" />
+@section scripts{
+    <script src="https:/s/cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        var popup, DataTable;
+        $(document).ready(function () {
+            DataTable = $("#EmployeeTable").DataTable({
+                "ajax": {
+                    "url": "/Student/GetData",
+                    "type": "GET",
+                   
+                },
+                "columns": [
+                    { "data": "ID" },
+                    { "data": "Name" },
+                    { "data": "Dept" },
+                    { "data": "City" }
+                ]
+            });
+        });
+        function popupfrom(url) {
+            var fromDiv = $('</div>');
+            $.get(url)
+                .done(function (response) {
+                    fromDiv.html(response);
+
+
+                    popup = fromDiv.dialoge({
+                        AutoOpen: true,
+                        
+                        Title: "Fill From",
+                        height: 300,
+                        wdith: 400,
+                        close: function () {
+                            popup.dialoge('destroy').remove();
+                        }
+                    });
+
+                    
+
+
+                });
+        } 
+    </script>
+
+}
+
+
+
+

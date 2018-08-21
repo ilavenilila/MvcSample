@@ -1,0 +1,35 @@
+﻿@model MvcDB.Models.Student
+@{
+
+
+    Layout = null;
+}
+
+@using (Html.BeginForm("AddOrEdit", "Student", FormMethod.Post))
+{
+    <div class="from group" >
+        @Html.LabelFor(model => model.Id, new { @class = "control Label" })
+        @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+
+    </div>
+    <div class="from group">
+        @Html.LabelFor(model => model.Name, new { @class = "control Label" })
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+
+    </div>
+    <div class="from group">
+        @Html.LabelFor(model => model.Dept, new { @class = "control Label" })
+        @Html.EditorFor(model => model.Dept, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="from group">
+        @Html.LabelFor(model => model.City, new { @class = "control Label" })
+        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+
+    </div>
+    <div class="from-group">
+        <input type="submit" value="Sumbit" class="btn btn-primary" />
+        <input type="reset" value="reset" />
+    </div>
+
+
+}
